@@ -1,6 +1,6 @@
 # Employees-managment-system
-This project is a microservices-based Employee Management System built with Spring Boot. It provides functionalities for managing employee, including creating, updating, deleting, and viewing employee details. It also includes features like authentication, report generation, and Notification service.
-
+# Project Overview
+The Employee Management System is a web-based application developed using Spring Boot. The system allows organizations to manage employee records effectively, providing functionalities such as employee CRUD operations, user authentication, and reporting. The application follows a modular approach with secure role-based access and is optimized for easy maintenance and scalability.
 # Features
 - User Authentication service (login/logout functionality).
 - Employee Management service (add, edit, delete, view employee details).
