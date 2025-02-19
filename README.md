@@ -16,6 +16,9 @@ cd employee-management-system
 CREATE DATABASE spring_db;
 
 3- Configure application.properties with your database details.
+spring.datasource.url=jdbc:mysql://localhost:3306/spring_db
+spring.datasource.username="root"
+spring.datasource.password=""
 
 4- Build and run the project:
 mvn clean install
