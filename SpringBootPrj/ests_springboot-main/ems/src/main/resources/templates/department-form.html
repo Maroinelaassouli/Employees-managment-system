@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" ng-app="departmentApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulaire Département</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    h1 {
+      color: #4caf50;
+    }
+
+    .btn-success {
+      background-color: #4caf50;
+      border: none;
+    }
+
+    .btn-success:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body ng-controller="DepartmentController">
+
+<!-- Navigation Bar -->
+<div class="bg-dark text-white py-3 text-center">
+  <h2>Gestion des Départements</h2>
+</div>
+
+<!-- Form Section -->
+<div class="container mt-5">
+  <h1 class="text-center mb-4">{{ department.id == null ? 'Ajouter un Département' : 'Modifier Département' }}</h1>
+
+  <form ng-submit="saveDepartment()">
+    <input type="hidden" ng-model="department.id" />
+
+    <div class="mb-3">
+      <label for="name" class="form-label">Nom du Département</label>
+      <input type="text" id="name" ng-model="department.name" class="form-control" placeholder="Entrez le nom du département" required/>
+    </div>
+
+    <button type="submit" class="btn btn-success w-100">Enregistrer</button>
+  </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/angular/angular.min.js"></script>
+<script>
+  // Define Angular Module
+  const app = angular.module('departmentApp', []);
+
+  // Define Angular Controller
+  app.controller('DepartmentController', function($scope, $http) {
+    $scope.department = {}; // Holds the form data
+
+    // Function to save department data
+    $scope.saveDepartment = function() {
+      if (!$scope.department.name) {
+        alert("Le nom du département est requis!");
+        return;
+      }
+
+      $http.post('/departments/add', $scope.department)
+              .then(response => {
+                alert("Département enregistré avec succès!");
+                window.location.href = '/departments';
+              })
+              .catch(error => {
+                console.error("Erreur lors de l'enregistrement:", error);
+                alert("Une erreur s'est produite!");
+              });
+    };
+  });
+
+  // Redirect if user is not logged in
+  if (!sessionStorage.getItem('loggedIn')) {
+    window.location.href = '/';
+  }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

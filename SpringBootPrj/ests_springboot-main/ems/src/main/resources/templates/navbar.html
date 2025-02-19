@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NavigationBar</title>
+
+    <!-- Lien CDN pour Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+          crossorigin="anonymous">
+    <!-- Lien CDN pour Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Barre de navigation -->
+<nav th:fragment="navbar" class="navbar navbar-expand-md bg-dark navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}">Employee Management System</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/employees}">Employee List</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/departments}">Departments List</a>
+                </li>
+            </ul>
+            <!-- Bouton de déconnexion -->
+            <form class="d-flex">
+                <button type="button" class="btn btn-success me-2" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </form>
+            <a class="nav-link btn btn-primary text-white" style="margin-left: 10px;" href="/report">
+                <i class="fas fa-chart-bar"></i> Reports
+            </a>
+
+        </div>
+    </div>
+</nav>
+
+<script>
+    function logout() {
+        sessionStorage.removeItem('loggedIn'); // Clear login status
+        window.location.href = '/'; // Redirect to login page
+    }
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-GLhlTQ8iRAB6P6Yc+F9f6Httd1dF4cGB6fXfWq2DLer94/l1QeVuS4uJ5K4pCwgr" crossorigin="anonymous"></script>
+</body>
+</html>
